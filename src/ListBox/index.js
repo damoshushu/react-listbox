@@ -33,9 +33,16 @@ export default  function ListBox(props) {
         item.isChecked = !item.isChecked;
         setAllItems(tmpItems)
         setCheckChange(!checkChange);
+        console.log(allItems)
     }
 
-    const selectedItems=allItems.filter((x)=>x.isChecked===true)
+    const  handleAllChecked = (event) => {
+        allItems.forEach(x => x.isChecked = event.target.checked);
+        setCheckChange(!checkChange);
+    }
+
+
+    const selectedItems=allItems.filter((x)=>x.isChecked===true).map(x=>{return x.name})
 
 
     return (
@@ -43,8 +50,9 @@ export default  function ListBox(props) {
             <button>Hello</button><br/>
             <input type="text" placeholder="Enter item to be searched"
                    onChange={(e) => setSearch(e.target.value)}/>
+            <label> <input type={"checkbox"} onChange={handleAllChecked} value="checkAll"  />Select All</label><br/>
             {showItems}
-            {selectedItems.toString()}
+            {selectedItems.join(",")}
         </div>
     )
 }
