@@ -1,2 +1,1 @@
-# react-listbox
-react listbox checkbox with filter
+Listbox with search
